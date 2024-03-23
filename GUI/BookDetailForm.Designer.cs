@@ -30,9 +30,11 @@
         {
             lblHeader = new Label();
             groupBox1 = new GroupBox();
+            txtBookId = new TextBox();
+            lblBookId = new Label();
             cbCategory = new ComboBox();
             lblCategory = new Label();
-            dateTimePicker1 = new DateTimePicker();
+            dtpPublicationDate = new DateTimePicker();
             txtPrice = new TextBox();
             txtQuantity = new TextBox();
             txtDescription = new TextBox();
@@ -47,8 +49,6 @@
             lblName = new Label();
             btnSave = new Button();
             btnCancel = new Button();
-            txtBookId = new TextBox();
-            lblBookId = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -68,7 +68,7 @@
             groupBox1.Controls.Add(lblBookId);
             groupBox1.Controls.Add(cbCategory);
             groupBox1.Controls.Add(lblCategory);
-            groupBox1.Controls.Add(dateTimePicker1);
+            groupBox1.Controls.Add(dtpPublicationDate);
             groupBox1.Controls.Add(txtPrice);
             groupBox1.Controls.Add(txtQuantity);
             groupBox1.Controls.Add(txtDescription);
@@ -88,6 +88,23 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Book info";
             // 
+            // txtBookId
+            // 
+            txtBookId.Location = new Point(182, 51);
+            txtBookId.Name = "txtBookId";
+            txtBookId.Size = new Size(299, 27);
+            txtBookId.TabIndex = 30;
+            // 
+            // lblBookId
+            // 
+            lblBookId.AutoSize = true;
+            lblBookId.Font = new Font("Book Antiqua", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblBookId.Location = new Point(63, 51);
+            lblBookId.Name = "lblBookId";
+            lblBookId.Size = new Size(76, 22);
+            lblBookId.TabIndex = 29;
+            lblBookId.Text = "Book ID";
+            // 
             // cbCategory
             // 
             cbCategory.FormattingEnabled = true;
@@ -106,12 +123,12 @@
             lblCategory.TabIndex = 27;
             lblCategory.Text = "Category";
             // 
-            // dateTimePicker1
+            // dtpPublicationDate
             // 
-            dateTimePicker1.Location = new Point(182, 299);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(282, 27);
-            dateTimePicker1.TabIndex = 26;
+            dtpPublicationDate.Location = new Point(182, 299);
+            dtpPublicationDate.Name = "dtpPublicationDate";
+            dtpPublicationDate.Size = new Size(282, 27);
+            dtpPublicationDate.TabIndex = 26;
             // 
             // txtPrice
             // 
@@ -241,23 +258,6 @@
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
-            // txtBookId
-            // 
-            txtBookId.Location = new Point(182, 51);
-            txtBookId.Name = "txtBookId";
-            txtBookId.Size = new Size(299, 27);
-            txtBookId.TabIndex = 30;
-            // 
-            // lblBookId
-            // 
-            lblBookId.AutoSize = true;
-            lblBookId.Font = new Font("Book Antiqua", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblBookId.Location = new Point(63, 51);
-            lblBookId.Name = "lblBookId";
-            lblBookId.Size = new Size(76, 22);
-            lblBookId.TabIndex = 29;
-            lblBookId.Text = "Book ID";
-            // 
             // BookDetailForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -283,7 +283,7 @@
         private GroupBox groupBox1;
         private ComboBox cbCategory;
         private Label lblCategory;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpPublicationDate;
         private TextBox txtPrice;
         private TextBox txtQuantity;
         private TextBox txtDescription;

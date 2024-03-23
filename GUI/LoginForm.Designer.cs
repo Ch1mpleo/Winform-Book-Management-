@@ -120,7 +120,6 @@
             Controls.Add(lblHeader);
             Name = "LoginForm";
             Text = "Welcome";
-            Load += LoginForm_Load;
             ((System.ComponentModel.ISupportInitialize)picLogin).EndInit();
             ResumeLayout(false);
             PerformLayout();

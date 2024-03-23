@@ -17,7 +17,7 @@ namespace GUI
         /// <summary>
         /// Hàm để refresh lại form
         /// </summary>
-        private void RefreshForm()
+        public void RefreshForm()
         {
             var result = dao.GetAllBooks();
             dtgBookList.DataSource = null;
@@ -47,7 +47,7 @@ namespace GUI
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtName.Text) || (string.IsNullOrEmpty(txtDescription.Text)))
+            if (string.IsNullOrEmpty(txtName.Text) && (string.IsNullOrEmpty(txtDescription.Text)))
             {
                 MessageBox.Show("Please enter the keyword to search", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -85,7 +85,6 @@ namespace GUI
                 selected = (Book)dtgBookList.SelectedRows[0].DataBoundItem;
                 dao.DeleteBook(selected.BookId);
                 MessageBox.Show("Delete successfully", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 //Gọi lại để cập nhật form sau khi đã xóa
                 RefreshForm();
             }

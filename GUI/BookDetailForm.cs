@@ -1,5 +1,7 @@
 ﻿using Repositories.Entities;
 using Services;
+using System.Net;
+using System.Windows.Forms;
 
 namespace GUI
 {
@@ -14,6 +16,7 @@ namespace GUI
         {
             InitializeComponent();
         }
+       
 
         private void BookDetailForm_Load(object sender, EventArgs e)
         {
@@ -33,12 +36,11 @@ namespace GUI
                 txtDescription.Text = selectedBook.Description.ToString();
                 txtPrice.Text = selectedBook.Price.ToString();
                 txtQuantity.Text = selectedBook.Quantity.ToString();
-                //dtpPublicationDate.Value = selectedBook.PublicationDate;
-                //To - do: add thêm fill vào dtpPublicationDate
+                dtpPublicationDate.Value = selectedBook.PublicationDate;
 
                 //fill vào comboBox
                 cbCategory.SelectedValue = selectedBook.BookCategoryId;
-            } 
+            }
             else
             {
                 lblHeader.Text = "Add Book";
@@ -47,29 +49,39 @@ namespace GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Book b = new Book();
-            if (selectedBook == null) //ktr nếu nó bằng null thì là add
+            Book b = new Book()
             {
-                b.BookId = selectedBook.BookId;
-                b.BookName = txtName.Text;
-                b.Author = txtAuthor.Text;
-                b.Description = txtDescription.Text;
-                //b.PublicationDate = dtpPublicationDate.Value;
-                b.Price = Convert.ToDouble(txtPrice.Text);
-                b.Quantity = Convert.ToInt32(txtQuantity.Text);
-                b.BookCategoryId = Convert.ToInt32(cbCategory.SelectedValue);
-                //gọi hàm add
+                BookId = int.Parse(txtBookId.Text),
+                BookName = txtName.Text,
+                Description = txtDescription.Text,
+                PublicationDate = dtpPublicationDate.Value,
+                Quantity = int.Parse(txtQuantity.Text),
+                Author = txtAuthor.Text,
+                Price = double.Parse(txtPrice.Text),
+                BookCategoryId = int.Parse(cbCategory.SelectedValue.ToString()),
+            };
+
+            //gửi xuống DB thông qua service
+            if (selectedBook == null)
+            {
                 bookDAO.AddBook(b);
-            } 
-            else   //nếu ko thì cho nó update
+                MessageBox.Show("Add successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
             {
                 bookDAO.UpdateBook(b);
+                MessageBox.Show("Update successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
+            //cho dù new/edit thì xong phỉa tắt màn hình detail
+            Close();
+            //đóng màn hình detail thì phải F5 cái lưới grid
+            //Bên main form phải refresh lưới ở ngay sau chỗ gọi detail
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        } 
+        }
     }
 }
+
